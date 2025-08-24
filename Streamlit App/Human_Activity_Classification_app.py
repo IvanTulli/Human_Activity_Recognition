@@ -2,6 +2,7 @@ import time, streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 import pandas as pd
 import numpy as np
@@ -37,8 +38,11 @@ def main():
 
     @st.cache_data
     def load_data():
-        df_train = pd.read_csv(r"C:\Git\Human_Activity_Recognition\Classification Problem\train.csv")
-        df_test  = pd.read_csv(r"C:\Git\Human_Activity_Recognition\Classification Problem\test.csv")
+        BASE = Path(__file__).resolve().parent
+        TRAIN_PATH = BASE / 'train.csv'
+        TEST_PATH = BASE / 'test.csv'
+        df_train = pd.read_csv(TRAIN_PATH)
+        df_test  = pd.read_csv(TEST_PATH)
 
         # drop subject column from features
         df_train = df_train.drop(columns=['subject'])
