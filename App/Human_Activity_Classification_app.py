@@ -183,11 +183,14 @@ def main():
                         plot_conf_matrix(y_test, y_pred, labels)
 
     elif trainchoice == "Use a trained model":
+        BASE = Path(__file__).resolve().parent
         clf_choice = st.sidebar.selectbox('Choose trained classifier', ('-', 'Support Vector Machine', 'Logistic Regression', 'Random Forest'))
         plot_cm_choice = st.sidebar.radio("Plot the confusion matrix?", ('Yes', 'No'))
         if clf_choice == "Support Vector Machine":
-            with open("svm_model.pkl", "rb") as f:
-                loaded_svm = pickle.load(f)
+            SVM_PATH = BASE / "svm_model.pkl"
+            with st.spinner("Loading model..."):
+                with open(SVM_PATH, "rb") as f:
+                    loaded_svm = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_svm"):
                 st.subheader('Support Vector Machine Predictions')
                 y_pred = loaded_svm.predict(X_test)
@@ -200,8 +203,10 @@ def main():
                 if plot_cm_choice == 'Yes':
                     plot_conf_matrix(y_test, y_pred, labels)
         if clf_choice == "Logistic Regression":
-            with open("lr_model.pkl", "rb") as f:
-                loaded_lr = pickle.load(f)
+            LR_PATH = BASE / "lr_model.pkl"
+            with st.spinner("Loading model..."):
+                with open(LR_PATH, "rb") as f:
+                    loaded_lr = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_lr"):
                 st.subheader("Logistic Regressions Predictions")
                 y_pred = loaded_lr.predict(X_test)
@@ -215,8 +220,10 @@ def main():
                     plot_conf_matrix(y_test, y_pred, labels)
 
         if clf_choice == "Random Forest":
-            with open("rf_model.pkl", "rb") as f:
-                loaded_rf = pickle.load(f)
+            RF_PATH = BASE / "rf_model.pkl"
+            with st.spinner("Loading model..."):
+                with open(RF_PATH, "rb") as f:
+                    loaded_rf = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_rf"):
                 st.subheader("Random Forest Predictions")
                 y_pred = loaded_rf.predict(X_test)
