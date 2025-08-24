@@ -189,7 +189,7 @@ def main():
         if clf_choice == "Support Vector Machine":
             SVM_PATH = BASE / "svm_model.pkl"
             with st.spinner("Loading model..."):
-                with open(SVM_PATH, "rb") as f:
+                with SVM_PATH.open("rb") as f:
                     loaded_svm = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_svm"):
                 st.subheader('Support Vector Machine Predictions')
@@ -205,7 +205,7 @@ def main():
         if clf_choice == "Logistic Regression":
             LR_PATH = BASE / "lr_model.pkl"
             with st.spinner("Loading model..."):
-                with open(LR_PATH, "rb") as f:
+                with LR_PATH.open("rb") as f:
                     loaded_lr = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_lr"):
                 st.subheader("Logistic Regressions Predictions")
@@ -222,7 +222,7 @@ def main():
         if clf_choice == "Random Forest":
             RF_PATH = BASE / "rf_model.pkl"
             with st.spinner("Loading model..."):
-                with open(RF_PATH, "rb") as f:
+                with RF_PATH.open("rb") as f:
                     loaded_rf = pickle.load(f)
             if st.sidebar.button("Predict", key = "predict_rf"):
                 st.subheader("Random Forest Predictions")
