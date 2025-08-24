@@ -3,11 +3,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
@@ -31,9 +29,10 @@ def main():
     st.sidebar.title('Multiclass Classification Web App')
     with st.expander("Information"):
         st.markdown('We are using the Kaggle dataset: https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones.')
-        st.markdown("The aim is, given the gyroscope and accelerometer readings of a smartphone, to determine whether a person is laying, "
-        "sitting, standing, walking, walking downstairs, or walking upstairs.")
-        st.markdown("This app shows the result metrics (accuracy, recall, precision, f1score) on the test set, either on a model trained by the app, "
+        st.markdown("The aim is to determine whether a person is laying, "
+        "sitting, standing, walking, walking downstairs, or walking upstairs, " \
+        "given the gyroscope and accelerometer readings of their smartphone.")
+        st.markdown("This app shows the prediction accuracy, recall, precision, and f1-score, either on a model trained by the app, "
         "or by a model that is pre-trained.")
 
     @st.cache_data
